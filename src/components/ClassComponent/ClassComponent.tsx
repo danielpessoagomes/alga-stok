@@ -3,11 +3,28 @@ import './ClassComponent.css';
 
 class ClassComponent extends React.Component<{name: string}> {
 
+    constructor(props: any){
+        super(props)
+        console.log('Contructor reached')
+    }
+
     state = {
         name: 'Mundo!!!!'
     }
 
+    componentDidMount(){
+        console.log('Did mount reached');
+        
+    }
+
+    componentDidUpdate(){
+        console.log('Did update reached');
+        
+    }
+
     render() {
+        console.log('Render reached');
+        
         return (
              <div>
                  <p>name: {this.state.name}</p>
