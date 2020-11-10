@@ -1,13 +1,8 @@
 import React from 'react';
 import Container from '../../shared/Container';
-import Button from '../../shared/Button';
 import Header from '../Header';
 import './App.css';
-import Input from '../../shared/Input';
 
-function TestComponent() {
-  return <img width="16" src="http://sistemas.tjam.jus.br/coij/wp-content/uploads/2018/04/1-foto.png" alt="coll"></img>
-}
 
 function App() {
 
@@ -17,14 +12,13 @@ function App() {
     <div className="App">
       <Header title="AlgaStok" />
       <Container>
-        <Button
-          onClick={() => window.alert('Alert')}
-          appendIcon={<TestComponent />}>
-          Alert
-        </Button>
-        <Input 
-          label="Street"
-        />
+        <ul>
+      {
+        ['Daniel', 'Heitor', 'Jessica', 'Daniel'].map((name, index)=> {
+          return <li key={index}>{name}</li>
+        })
+      }   
+        </ul>
       </Container>
     </div>
   );
