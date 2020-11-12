@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import Button from '../../shared/Button'
 import Form from '../../shared/Form'
 import Input from '../../shared/Input'
+import { Product } from '../../shared/Table/Table.mockdata'
 
-
-const initialFormState = {
-    name: '',
-    price: '',
-    stock: ''
+declare interface InitialFormState {
+    id?: number,
+    name: string,
+    price: string
+    stock: string
 }
+
 
 export interface ProductCreator {
     name: string
@@ -17,44 +19,80 @@ export interface ProductCreator {
 }
 
 declare interface ProductFormProps {
-    onSubmit: (product: ProductCreator) => void
+    form?: Product
+    onSubmit?: (product: ProductCreator) => void
+    onUpdate?: (product: Product) => void
 }
 
 const ProductForm: React.FC<ProductFormProps> = (props) => {
 
+    const initialFormState: InitialFormState =props.form
+    ?
+    {
+        id: props.form.id,
+        name: props.form.name,
+        price: String(props.form.price),
+        stock: String(props.form.stock)
+    }
+    : {
+        name: '',
+        price: '',
+        stock: ''
+    }
+
     const [form, setForm] = useState(initialFormState)
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const {value, name} = event.target
+        const { value, name } = event.target
         setForm({
-            ...form, 
+            ...form,
             [name]: value
         })
     }
 
-    const handleFormSubmit = () => {
+    const updateProduct = (product: InitialFormState) => {
         const productDto = {
-            name: String(form.name),
-            price: parseFloat(form.price),
-            stock: Number(form.stock)
+            id: Number(product.id),
+            name: String(product.name),
+            price: parseFloat(product.price),
+            stock: Number(product.stock)
         }
 
-        props.onSubmit(productDto)
+        props.onUpdate && 
+            props.onUpdate(productDto)
+    }
+
+    const createProduct = (product: InitialFormState) => {
+        const productDto = {
+            name: String(product.name),
+            price: parseFloat(product.price),
+            stock: Number(product.stock)
+        }
+
+        props.onSubmit && 
+            props.onSubmit(productDto)
+    }
+
+    const handleFormSubmit = () => {
+
+        form.id 
+            ? updateProduct(form)
+            : createProduct(form)
 
         setForm(initialFormState)
     }
 
     return <Form title="Product" onSubmit={handleFormSubmit}>
-        <Input 
-            onChange= {handleInputChange}
+        <Input
+            onChange={handleInputChange}
             name="name"
             label="Name"
             placeholder="E.g.: Cookie"
             value={form.name}
             required
         />
-        <Input 
-            onChange= {handleInputChange}
+        <Input
+            onChange={handleInputChange}
             name="price"
             label="Price"
             type="number"
@@ -64,8 +102,8 @@ const ProductForm: React.FC<ProductFormProps> = (props) => {
             value={form.price}
             required
         />
-        <Input 
-            onChange= {handleInputChange}
+        <Input
+            onChange={handleInputChange}
             name="stock"
             label="Stock"
             type="number"
