@@ -35,4 +35,10 @@ table.AppTable {
       }
     }
   }
+
+  .action {
+    > *:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
 }
