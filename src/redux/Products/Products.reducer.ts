@@ -3,6 +3,7 @@ export interface ActionCreator<T = any> {
     payload?: T
 }
 
+// eslint-disable-next-line
 export default function (state = [], action: ActionCreator) {
     switch (action.type) {
         case 'INSERT_NEW_PRODUCT':
