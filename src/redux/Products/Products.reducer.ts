@@ -1,10 +1,12 @@
+import Products from "../../shared/Table/Table.mockdata"
+
 export interface ActionCreator<T = any> {
     type: string
     payload?: T
 }
 
 // eslint-disable-next-line
-export default function (state = [], action: ActionCreator) {
+export default function (state = Products, action: ActionCreator) {
     switch (action.type) {
         case 'INSERT_NEW_PRODUCT':
             return [...state, action.payload]
