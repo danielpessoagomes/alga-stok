@@ -1,14 +1,10 @@
-import { stat } from "fs"
+import { ActionCreator } from ".."
 import Products, { Product } from "../../shared/Table/Table.mockdata"
 
-export interface ActionCreator<T = any> {
-    type: string
-    payload?: T
-}
-
-// eslint-disable-next-line
 export default function (state = Products, action: ActionCreator): Product[] {
     switch (action.type) {
+        case 'FETCH_PRODUCTS':
+            return [...action.payload]
         case 'INSERT_NEW_PRODUCT':
             return [...state, {
                 ...action.payload,
