@@ -20,12 +20,14 @@ const store = createStore(
     )
 )
 
+
+export type RootState = ReturnType<typeof reducers>
 export interface ActionCreator<T = any> {
     type: string
     payload?: T
 }
 
 export type Thunk<T = any> = 
-    ThunkAction<void, typeof reducers, unknown, ActionCreator<T>>
+    ThunkAction<void, RootState, unknown, ActionCreator<T>>
 
 export default store
