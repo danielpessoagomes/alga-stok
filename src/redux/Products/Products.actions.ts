@@ -1,14 +1,9 @@
-import { Product } from "../../shared/Table/Table.mockdata"
+import { ProductCreator } from "../../components/Products/ProductForm"
 import { ActionCreator } from "./Products.reducer"
 
-export const insertNewProduct = ():ActionCreator<Product> => {
+export const insertNewProduct = (payload: ProductCreator):ActionCreator<ProductCreator> => {
     return {
         type: 'INSERT_NEW_PRODUCT',
-        payload: {
-            _id: '1',
-            name: 'Cookie',
-            price: 0.35,
-            stock: 700
-        }
+        payload
     }
 }
