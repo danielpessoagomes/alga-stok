@@ -30,4 +30,6 @@ export interface ActionCreator<T = any> {
 export type Thunk<T = any> = 
     ThunkAction<void, RootState, unknown, ActionCreator<T>>
 
+export type ThunkDispatch = (thunk: Thunk) => Promise<Thunk>
+
 export default store
