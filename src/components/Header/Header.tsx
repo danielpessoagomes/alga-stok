@@ -1,4 +1,3 @@
-import { stat } from 'fs'
 import React from 'react'
 import { RootState } from '../../redux'
 import './Header.css'
@@ -12,7 +11,7 @@ declare interface HeaderProps {
 const Header: React.FC<HeaderProps> = (props) => {
   return <header className="AppHeader">
     <h1>{ props.title }</h1>
-    <span> {props.firstProduct.name} </span>
+    <span> {props.firstProduct?.name} </span>
   </header>
 }
 

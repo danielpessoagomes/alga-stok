@@ -1,7 +1,8 @@
 import { ActionCreator } from ".."
-import Products, { Product } from "../../shared/Table/Table.mockdata"
+import { Product } from "../../shared/Table/Table.mockdata"
 
-export default function (state = Products, action: ActionCreator): Product[] {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function (state: Product[] = [], action: ActionCreator): Product[] {
     switch (action.type) {
         case 'FETCH_PRODUCTS':
             return [...action.payload]
