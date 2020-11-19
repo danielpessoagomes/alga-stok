@@ -4,6 +4,7 @@ export interface User {
     _id: string;
     user: string;
     email: string;
+    token: string;
     role: 'admin' | 'customer'
     createdAt: string
     updatedAt: string
