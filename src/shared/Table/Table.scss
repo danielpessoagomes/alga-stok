@@ -1,18 +1,18 @@
 table.AppTable {
   width: 100%;
-  box-shadow: 0 3px 6px rgba(#000, .1);
+  box-shadow: 0 3px 6px rgba(#000, 0.1);
   border-collapse: collapse;
 
   thead {
     background-color: #09f;
     tr th {
-      color: rgba(#fff, .8);
+      color: rgba(#fff, 0.8);
       text-align: left;
       padding: 7px 10px;
-      font-size: .8em;
+      font-size: 0.8em;
       font-weight: 400;
       text-transform: uppercase;
-      letter-spacing: .75px;
+      letter-spacing: 0.75px;
 
       &.right {
         text-align: right;
@@ -23,7 +23,7 @@ table.AppTable {
   tbody {
     tr {
       &:hover {
-        background-color: rgba(#000, .05);
+        background-color: rgba(#000, 0.05);
       }
       td {
         padding: 7px 10px;
@@ -39,6 +39,48 @@ table.AppTable {
   .action {
     > *:not(:last-child) {
       margin-right: 5px;
+    }
+  }
+}
+
+.Table_pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+
+  a {
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #09f;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+
+    font-size: 12px;
+
+    transition: 0.25s ease;
+
+    &:hover {
+      background-color: #09f;
+      color: #fff;
+      border-color: #09f;
+      box-shadow: 0 3px 6px rgba(#000, 0.2);
+      transform: translateY(-3px);
+    }
+
+    &.selected {
+      color: #222;
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
     }
   }
 }
